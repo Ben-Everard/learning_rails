@@ -1,2 +1,19 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h3>Register New User</h3>
+<div>
+	<% if @users.errors %>
+	<% @users.errors.full_messages.each do |x|%>
+	<%= x %><br>
+	<%end%>
+	<% else %>
+	<%= @users %>
+	<% end %>
+	<form action="/users" method="post">
+  		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		First Name:<input type="text" name="user[first_name]" placeholder="First Name" /><br>
+		Last Name:<input type="text" name="user[last_name]" placeholder="Last Name" /><br>
+		Email Address:<input type="text" name="user[email_address]" placeholder="Email Address" /><br>
+		Password:<input type="password" name="user[password]" placeholder="Password" /><br>
+		Confirm Password:<input type="password" name="user[password_confirmation]" placeholder="Confirm Password" /><br>
+		<input type="submit" value="Register User" />
+	</form>
+</div>
